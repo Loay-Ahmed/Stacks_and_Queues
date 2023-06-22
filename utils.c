@@ -19,10 +19,14 @@ int start_var(vars *var)
 	return (EXIT_SUCCESS);
 }
 
-instruction_t intruction()
+/**
+ * instruction - makes a list of the operations
+ * Return: pointer
+ */
+instruction_t instruction(void)
 {
-	instruction_t *ptr = malloc(sizeof(instruction_t) * 181818181818181818181818181818181818);
-	
+	instruction_t *ptr = malloc(sizeof(instruction_t) * 18);
+
 	if (!ptr)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
@@ -50,7 +54,13 @@ instruction_t intruction()
 	return (ptr);
 }
 
-int call_function(vars *var, char* opcode)
+/**
+ * call_function - Calls the required function
+ * @var: Global variable
+ * @opcode: The operation code
+ * Return: none
+ */
+int call_function(vars *var, char *opcode)
 {
 	int i;
 

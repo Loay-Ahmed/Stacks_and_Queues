@@ -6,7 +6,7 @@
  * @line_number: The line number in the file
  * Return: Nothing
  */
-void swap(stac_t **stack, unsigned int line_numebr)
+void swap(stac_t **stack, unsigned int line_number)
 {
 	int tmp;
 

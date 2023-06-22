@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 		free_all();
 		return (EXIT_FAILURE);
 	}
-	while (getline(&var.buf, &var.tmp, var.f ) != EOF) 
+	while (getline(&var.buf, &var.tmp, var.f) != EOF)
 	{
 		opcode = strtok(var.buf, " \r\t\n");
 		if (opcode != NULL)
