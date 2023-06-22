@@ -1,8 +1,16 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MONTY_H
+#define MONTY_H
 
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -33,5 +41,36 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct var_glob - global variables
+ * @file: filename
+ * @buf: buffer
+ * @tmp: counter
+ * @dict: instruction
+ * @line_number: stores current file line
+ */
+typedef struct var_glob
+{
+	File* file;
+	char *buf;
+	size_t tmp;
+	instruction_t *dict;
+	unsigned int line_number;
+} vars;
+
+extern vars var;
+
+int start_var(vars *var);
+instruction_t *create_instru();
+int call_function(vars *var, char *opcode);
+void free_all(void);
+int _isdigit(char *string);
+void pall(stack_t **stack, unsigned int line_number);
+void push(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 
 #endif
