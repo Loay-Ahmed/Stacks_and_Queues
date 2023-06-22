@@ -1,8 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "stdio.h"
+#include "stdlib.h"
 #include <string.h>
 #include <unistd.h>
 #include <sys/stat.h>
@@ -44,25 +44,29 @@ typedef struct instruction_s
 
 /**
  * struct var_glob - global variables
- * @file: filename
+ * @f: filename
  * @buf: buffer
  * @tmp: counter
  * @dict: instruction
  * @line_number: stores current file line
+ * @head: pointer to list
+ * @MODE: program configuration stack and queue
  */
 typedef struct var_glob
 {
-	File *file;
+	FILE *f;
 	char *buf;
 	size_t tmp;
 	instruction_t *dict;
+	stack_t *head;
 	unsigned int line_number;
+	int MODE;
 } vars;
 
 extern vars var;
 
 int start_var(vars *var);
-instruction_t *create_instru();
+instruction_t *instruction();
 int call_function(vars *var, char *opcode);
 void free_all(void);
 int _isdigit(char *string);

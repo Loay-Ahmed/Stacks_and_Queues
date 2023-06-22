@@ -7,10 +7,10 @@
  */
 int start_var(vars *var)
 {
-	var->file = NULL;
+	var->f = NULL;
 	var->buf = NULL;
 	var->tmp = 0;
-	var->dict = intruction();
+	var->dict = instruction();
 	if (var->dict == NULL)
 		return (EXIT_FAILURE);
 	var->head = NULL;
@@ -23,9 +23,9 @@ int start_var(vars *var)
  * instruction - makes a list of the operations
  * Return: pointer
  */
-instruction_t instruction(void)
+instruction_t *instruction(void)
 {
-	instruction_t *ptr = malloc(sizeof(instruction_t) * 18);
+	instruction_t *ptr = malloc(sizeof(instruction_t) * 8);
 
 	if (!ptr)
 	{
@@ -40,17 +40,7 @@ instruction_t instruction(void)
 	ptr[4].opcode = "swap", ptr[4].f = swap;
 	ptr[5].opcode = "add", ptr[5].f = add;
 	ptr[6].opcode = "nop", ptr[6].f = NULL;
-	ptr[7].opcode = "sub", ptr[7].f = sub;
-	ptr[8].opcode = "div", ptr[8].f = divi;
-	ptr[9].opcode = "mul", ptr[9].f = mul;
-	ptr[10].opcode = "mod", ptr[10].f = mod;
-	ptr[11].opcode = "pchar", ptr[11].f = pchar;
-	ptr[12].opcode = "pstr", ptr[12].f = pstr;
-	ptr[13].opcode = "rotl", ptr[13].f = rotl;
-	ptr[14].opcode = "rotr", ptr[14].f = rotr;
-	ptr[15].opcode = "stack", ptr[15].f = stack;
-	ptr[16].opcode = "queue", ptr[16].f = queue;
-	ptr[17].opcode = NULL, ptr[17].f = NULL;
+	ptr[7].opcode = NULL, ptr[17].f = NULL;
 	return (ptr);
 }
 
@@ -70,11 +60,11 @@ int call_function(vars *var, char *opcode)
 		{
 			if (!var->dict[i].f)
 				return (EXIT_SUCCESS);
-			var->dict[i].f(&var, var->line_number);
+			var->dict[i].f(&var->head, var->line_number);
 			return (EXIT_SUCCESS);
 		}
 	}
-	if (strlen(opcode) != 0 && opcode[0] != "#")
+	if (strlen(opcode) != 0 && opcode[0] != '#')
 	{
 		fprintf(stderr, "L%u: unkown instruction %s\n",
 				var->line_number, opcode);

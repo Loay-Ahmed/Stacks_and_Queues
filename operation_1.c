@@ -6,7 +6,7 @@
  * @line_number: The line number int the monty file
  * Return: Nothing
  */
-int pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
 	(void) line_number;
@@ -18,6 +18,7 @@ int pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
 	}
+	return;
 }
 
 /**

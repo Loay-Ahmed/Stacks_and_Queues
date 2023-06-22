@@ -6,11 +6,11 @@
  * @line_number: The line number in the file
  * Return: Nothing
  */
-void swap(stac_t **stack, unsigned int line_number)
+void swap(stack_t **stack, unsigned int line_number)
 {
 	int tmp;
 
-	if (!*stack || !(*satck)->next)
+	if (!*stack || !(*stack)->next)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n",
 				line_number);
