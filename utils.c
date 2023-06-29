@@ -40,7 +40,7 @@ instruction_t *instruction(void)
 	ptr[4].opcode = "swap", ptr[4].f = swap;
 	ptr[5].opcode = "add", ptr[5].f = add;
 	ptr[6].opcode = "nop", ptr[6].f = NULL;
-	ptr[7].opcode = NULL, ptr[17].f = NULL;
+	ptr[7].opcode = NULL, ptr[7].f = NULL;
 	return (ptr);
 }
 
